@@ -2,10 +2,14 @@ package main
 
 import (
 	"calAPI/routes"
+	"log"
 )
 
 func main() {
 
 	router := routes.NewRoutes()
-	router.Run()
+	err := router.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
