@@ -48,10 +48,19 @@ func AddReservationHandler(c *gin.Context) {
 	}
 
 	cmd := "INSERT INTO reservations (name,phoneNumber,paymentId,startAt,endAt) VALUES (?,?,?,?,?)"
-	_, err := db.Exec(cmd, reservation.Name, reservation.PhoneNumber, reservation.PaymentID, reservation.StartAt, reservation.EndAt)
+	res, err := db.Exec(cmd, reservation.Name, reservation.PhoneNumber, reservation.PaymentID, reservation.StartAt, reservation.EndAt)
 	if err != nil {
 		log.Fatal(err)
 	}
+	numRecord, err := db.
+		Query("SELECT count(*) FROM reservations")
 
-	c.JSON(http.StatusOK, "OK")
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Print(numRecord)
+	id, _ := res.LastInsertId()
+	c.JSON(http.StatusOK, id)
+
+	return
 }

@@ -22,7 +22,7 @@ func ListRecipesHandler(c *gin.Context) {
 	// １行ごとTODOのEntityにマッピングし、返却用のスライスに追加
 	for rows.Next() {
 		reservation := models.Reservation{}
-		err = rows.Scan(&reservation.ID, &reservation.Name, &reservation.StartAt, &reservation.EndAt)
+		err = rows.Scan(&reservation.ID, &reservation.Name, &reservation.PhoneNumber, &reservation.PaymentID, &reservation.StartAt, &reservation.EndAt)
 		if err != nil {
 			log.Print(err)
 			return
