@@ -9,7 +9,7 @@ import (
 
 func ListRecipesHandler(c *gin.Context) {
 
-	var reservations []models.Reservation
+	var reservations []models.DbReservation
 
 	// DBから全てのTODOを取得
 	rows, err := db.
@@ -19,10 +19,10 @@ func ListRecipesHandler(c *gin.Context) {
 		return
 	}
 
-	// １行ごとTODOのEntityにマッピングし、返却用のスライスに追加
 	for rows.Next() {
-		reservation := models.Reservation{}
-		err = rows.Scan(&reservation.ID, &reservation.Name, &reservation.PhoneNumber, &reservation.PaymentID, &reservation.StartAt, &reservation.EndAt)
+		reservation := models.DbReservation{}
+		err = rows.Scan(&reservation.Id, &reservation.ReservationId, &reservation.UserId, &reservation.PaymentID, &reservation.StartAt, &reservation.EndAt)
+
 		if err != nil {
 			log.Print(err)
 			return

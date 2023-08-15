@@ -1,12 +1,23 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type Reservation struct {
-	ID          string    `json:"id"`
-	Name        string    `json:"name"`
-	PhoneNumber string    `json:"phoneNumber"`
-	PaymentID   string    `json:"paymentId"`
-	StartAt     time.Time `json:"startAt"`
-	EndAt       time.Time `json:"endAt"`
+	UserId    int       `json:"userId"`
+	PaymentId int       `json:"paymentId"`
+	StartAt   time.Time `json:"startAt"`
+	EndAt     time.Time `json:"endAt"`
 }
+type DbReservation struct {
+	Id            int       `json:"id"`
+	ReservationId int       `json:"reservationId"`
+	UserId        int       `json:"userId"`
+	PaymentID     int       `json:"paymentId"`
+	StartAt       time.Time `json:"startAt"`
+	EndAt         time.Time `json:"endAt"`
+}
+
+//Name          string    `json:"name"`
+//PhoneNumber   string    `json:"phoneNumber"`
