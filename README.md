@@ -3,6 +3,14 @@
 
 DBには、sqlite3を用い、以下の構造体で予約データを保存している。
 
+クエリには、CRUD機能を順に
+`POST /reservation`
+`GET /reservations`
+`PUT /reservation`
+`DELETE /reservation`
+
+として実装している。後に詳細を記述する。
+
 ## テーブル名: reservations
 
 このテーブルは、予約情報を保持するために使用されている
